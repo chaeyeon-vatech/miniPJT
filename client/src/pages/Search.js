@@ -1,13 +1,15 @@
-import React, {Component, useEffect, useState} from 'react';
-
+import React, {Component, useState, useEffect} from 'react';
 import Header from "../layout/Header";
 import Menu from "../layout/Menu";
 import Footer from "../layout/Footer";
+import {FETCH_POSTS_QUERY} from '../util/graphql';
 import {useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY} from "../util/graphql";
 import BoardTable from "../components/BoardTable";
+import TextField from '@material-ui/core/TextField';
+import SearchBar from "../components/SearchBar";
 
-function Main() {
+
+function Search() {
 
     const [contents, setContents] = useState([]);
 
@@ -30,7 +32,8 @@ function Main() {
         <div>
             <Header/>
             <Menu/>
-            <h1 className="table-title">전체 목록 보기</h1>
+            <h1 className="table-title">검색</h1>
+            <SearchBar/>
             <BoardTable/>
             <Footer/>
         </div>
@@ -38,4 +41,4 @@ function Main() {
 
 }
 
-export default Main;
+export default Search;
