@@ -15,6 +15,9 @@ const typeDefs = gql`
   }
   type Mutation{
     createContent(contentInput: ContentInput): Content!
+    updateContent(_id: String, title:String, content:String): Content!
+    removeContent(_id: String): Content!
+    searchOne(_id: String) : Content!
   }
 `;
 

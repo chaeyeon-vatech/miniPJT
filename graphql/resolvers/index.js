@@ -38,7 +38,34 @@ const resolvers = {
         console.log(err);
         throw err;
       }
-    }
+    },
+    removeContent: async (_, args) => {
+      try {
+        const removedcontent = await Content.findByIdAndRemove(args._id).exec()
+        return removedcontent
+      } catch (e) {
+        throw new Error('Error: ', e)
+      }
+    },
+    updateContent: async (_, {_id,title,content}) => {
+      try {
+        const updatedContent = await Content.findByIdAndUpdate(_id, {
+          $set: {title, content}
+        }).exec()
+        return updatedContent
+      } catch (e) {
+        throw new Error('Error: ', e)
+      }
+    },
+    searchOne: async (_, args) => {
+      try {
+        const searchcontent = await Content.findById(args._id).exec()
+        return searchcontent
+      } catch (e) {
+        throw new Error('Error: ', e)
+      }
+    },
+
   }
 };
 
