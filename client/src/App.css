@@ -185,7 +185,7 @@ body {
     color: #222;
 }
 
-.employees-table {
+.table {
     margin: 50px auto;
     max-width: 600px;
     width: 100%;
@@ -196,7 +196,7 @@ body {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.employees-table-head th {
+.table-head th {
     padding: 15px 15px;
     text-transform: uppercase;
     font-size: .9em;
@@ -205,37 +205,37 @@ body {
     background: #222;
 }
 
-.employees-table-body tr{
+.table-body tr {
     background: #fff;
     transition: ease-in-out .3s;
 }
 
-.employees-table-body tr:nth-child(even) {
+.table-body tr:nth-child(even) {
     background: #fafafa;
 }
 
-.employees-table-body tr:hover {
+.table-body tr:hover {
     background: #222;
     color: #f1f1f1;
 }
 
-.employees-table-body td{
+.table-body td {
     padding: 15px 15px;
     font-size: .9em;
     font-weight: 600;
     cursor: pointer;
 }
 
-.employees-table-body tr i{
+.table-body tr i {
     color: transparent;
     transition: ease-in-out .3s;
 }
 
-.employees-table-body tr:hover i {
+.table-body tr:hover i {
     color: #e74c3c;
 }
 
-.employees-table-body tr i:hover {
+.table-body tr i:hover {
     color: #c0392b;
 }
 
@@ -244,39 +244,39 @@ body {
         margin-bottom: 0;
     }
 
-    .employees-table {
+    .table {
         box-shadow: none;
         margin: 0;
     }
 
-    .employees-table,
-    .employees-table-head,
-    .employees-table-body,
-    .employees-table-head th,
-    .employees-table-body td,
-    .employees-table-body tr {
+    .table,
+    .table-head,
+    .table-body,
+    .table-head th,
+    .table-body td,
+    .table-body tr {
         display: block;
     }
 
-    .employees-table-head tr{
+    .table-head tr {
         display: none;
     }
 
-    .employees-table-body tr {
+    .table-body tr {
         margin: 40px 10px;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .employees-table-body td {
+    .table-body td {
         position: relative;
         border: none;
         border-bottom: 1px solid #eee;
         padding-left: 50%;
     }
 
-    .employees-table-body td:before {
+    .table-body td:before {
         position: absolute;
         content: '';
         top: 0;
@@ -286,7 +286,7 @@ body {
         background: #222;
     }
 
-    .employees-table-body td:after {
+    .table-body td:after {
         position: absolute;
         color: #fff;
         text-transform: uppercase;
@@ -298,20 +298,28 @@ body {
         white-space: nowrap;
     }
 
-    .employees-table-body td:nth-of-type(1):after { content: "First Name"; }
-    .employees-table-body td:nth-of-type(2):after { content: "Last Name"; }
-    .employees-table-body td:nth-of-type(3):after { content: "Job Title"; }
+    .table-body td:nth-of-type(1):after {
+        content: "First Name";
+    }
 
-    .employees-table-body td:last-child {
+    .table-body td:nth-of-type(2):after {
+        content: "Last Name";
+    }
+
+    .table-body td:nth-of-type(3):after {
+        content: "Job Title";
+    }
+
+    .table-body td:last-child {
         border-bottom: none;
     }
 
-    .employees-table-body tr:hover {
+    .table-body tr:hover {
         background: #fff;
         color: #222;
     }
 
-    .employees-table-body tr i{
+    .table-body tr i {
         color: #e74c3c;
         transition: ease-in-out .3s;
     }

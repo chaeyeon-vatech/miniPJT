@@ -10,8 +10,8 @@ function Test() {
             <Header/>
             <Menu/>
             <h1 className="table-title">Example Table</h1>
-            <table className="employees-table">
-                <thead className="employees-table-head">
+            <table className="table">
+                <thead className="table-head">
                 <tr>
                     <th>Firstname</th>
                     <th>Lastname</th>
@@ -19,7 +19,7 @@ function Test() {
                     <th></th>
                 </tr>
                 </thead>
-                <tbody className="employees-table-body">
+                <tbody className="table-body">
                 <tr>
                     <td>박</td>
                     <td>채연</td>
