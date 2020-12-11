@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const dbConnect = require('./models');
 dbConnect();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
