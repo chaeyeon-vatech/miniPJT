@@ -24,7 +24,7 @@ function BoardTable() {
     return (
 
         <table className="employees-table">
-            <thead className="employees-table-head">
+            <thead clasName="employees-table-head">
             <tr>
                 <th>ID</th>
                 <th>Content</th>
