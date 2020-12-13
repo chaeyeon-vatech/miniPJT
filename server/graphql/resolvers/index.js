@@ -17,7 +17,7 @@ const resolvers = {
       return _._id;
     },
     title(_, args) {
-      return _.title;ß
+      return _.title;
     },
     content(_, args) {
       return _.content;
