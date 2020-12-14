@@ -4,8 +4,7 @@ import Menu from "../layout/Menu";
 import Footer from "../layout/Footer";
 import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql";
-import BoardTable from "../components/BoardTable";
-import SearchBar from "../components/SearchBar";
+import CRUDTable from "../components/CRUDTable";
 
 function Crud() {
     const [contents, setContents] = useState([]);
@@ -30,7 +29,7 @@ function Crud() {
             <Header/>
             <Menu/>
             <h1 className="table-title">CRUD</h1>
-            <BoardTable/>
+            <CRUDTable/>
             <Footer/>
         </div>
     )

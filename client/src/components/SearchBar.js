@@ -67,7 +67,8 @@ function SearchBar({id, callback}) {
                        type='search'
                        onChange={myChangeHandler}/>
 
-            <TextField type='submit' open={confirmOpen} onCancel={() => setConfirmOpen(false)} onConfirm={SearchMutation} value="↳ Search ID"/>
+            <TextField type='submit' open={confirmOpen} onCancel={() => setConfirmOpen(false)}
+                       onConfirm={SearchMutation} value="↳ Search ID"/>
 
         </form>
 

@@ -11,5 +11,4 @@ const SEARCH_MUTATION = gql`
 `;
 
 
-
 export default SEARCH_MUTATION;
