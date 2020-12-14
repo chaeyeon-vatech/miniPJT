@@ -16,10 +16,6 @@ function BoardTable() {
         }
     }, [data]);
 
-    console.log(contents);
-
-    console.log(contents._id);
-
     if (loading) return 'Loading...'
 
     return (

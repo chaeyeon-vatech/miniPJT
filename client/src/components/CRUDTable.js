@@ -6,7 +6,7 @@ import DeleteButton from "./DeleteButton";
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
-
+    const mongoose = require('mongoose');
     const {loading, data} = useQuery(FETCH_POSTS_QUERY);
 
 
@@ -16,10 +16,8 @@ function BoardTable() {
         }
     }, [data]);
 
-    console.log(contents);
 
-    console.log(contents._id);
-
+    console.log(data._id);
     if (loading) return 'Loading...'
 
     return (
@@ -38,12 +36,15 @@ function BoardTable() {
 
             {contents &&
             contents.map((content) => (
+
+
                 <tr key={content._id} style={{marginBottom: 20}}>
                     <td>{content._id}</td>
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
-                    <td><DeleteButton post_id={content._id}/></td>
+                    <td><DeleteButton id={mongoose.Types.ObjectId(content._id)}/></td>
+                    console.log({mongoose.Types.ObjectId(content._id)})
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>
 

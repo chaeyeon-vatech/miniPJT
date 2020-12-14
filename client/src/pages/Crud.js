@@ -18,9 +18,6 @@ function Crud() {
         }
     }, [data]);
 
-    console.log(contents);
-
-    console.log(contents._id);
 
     if (loading) return 'Loading...'
 

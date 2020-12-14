@@ -4,6 +4,14 @@ const { DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 // 로컬 주소 : mongodb://${DB_USER}:${DB_PASSWORD}@localhost:27017/${DB_NAME}?authSource=admin
 const MONGO_URL = `mongodb+srv://admin:1234@cluster0.rnsm9.mongodb.net/miniPJT?retryWrites=true&w=majority`;
 
+// If you are using mongoose:
+const ObjectId = require('mongoose').Types.ObjectId;
+
+ObjectId.prototype.valueOf = function () {
+  return this.toString();
+};
+
+
 // 몽고디비 연결
 export default function() {
   mongoose.connect(MONGO_URL, {
