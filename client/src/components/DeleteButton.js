@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
-import DELETE_MUTATION from "../util/mutation";
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
 import {IconButton} from "@material-ui/core";
@@ -46,6 +45,15 @@ function DeleteButton({post_id, callback}) {
         </>
     );
 }
+
+const DELETE_MUTATION = gql`
+    mutation removeContent($post_id: ID!){
+        removeContent(_id:$post_id) {
+            title
+            content
+        }
+    }
+`;
 
 
 export default DeleteButton;
