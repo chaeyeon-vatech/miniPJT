@@ -60,14 +60,14 @@ function SearchBar({id, callback}) {
     return (
 
 
-        <form className={classes.root} action="#" method="post">
+        <form className={classes.root} action="#" onSubmit={mySubmitHandler}>
 
             <TextField required id="standard-required" label="검색"
                        placeholder="타이틀 검색"
                        type='search'
                        onChange={myChangeHandler}/>
 
-            <TextField type='submit' onSubmit={SearchMutation} value="↳ Search ID"/>
+            <TextField type='submit' open={confirmOpen} onCancel={() => setConfirmOpen(false)} onConfirm={SearchMutation} value="↳ Search ID"/>
 
         </form>
 
