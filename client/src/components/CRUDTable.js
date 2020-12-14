@@ -43,6 +43,7 @@ function BoardTable() {
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
+                    <td><DeleteButton post_id={content._id}/></td>
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
     <div className="header">
-       CRUD Practice Project
+        CRUD Practice Project
     </div>
 )
 
