@@ -30,7 +30,6 @@ function Crud() {
             <Header/>
             <Menu/>
             <h1 className="table-title">CRUD</h1>
-            <SearchBar/>
             <BoardTable/>
             <Footer/>
         </div>

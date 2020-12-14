@@ -5,20 +5,33 @@ import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import SEARCH_MUTATION from "../util/mutation";
 
+const WebFont = require('webfontloader');
+
+
+WebFont.load({
+    google: {
+        families: ['Do Hyeon', 'Sansita Swashed']
+    }
+});
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
-            margin: theme.spacing(3),
-            width: '25ch'
-
+            margin: "0px auto",
+            width: '25ch',
+            alignItems: 'center',
+            justifyContent: 'center',
+            display: 'block',
+            LeftMargin: "30px",
+            FontFamily: 'Do Hyeon'
         },
 
     }
 }))
 
 
-function SearchBar({id,callback}) {
+function SearchBar({id, callback}) {
     const classes = useStyles();
     const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -45,15 +58,20 @@ function SearchBar({id,callback}) {
     }
 
     return (
-        <form className={classes.root} noValidate autoComplete="off" onSubmit={mySubmitHandler}>
-            <div>
-                <TextField required id="standard-required" label="검색" placeholder="타이틀 검색"
-                           type='text'
-                           onChange={myChangeHandler}/>
-                <TextField type='submit'  onSubmit={SearchMutation}/>
-            </div>
+
+
+        <form className={classes.root} action="#" onSubmit={mySubmitHandler}>
+
+            <TextField required id="standard-required" label="검색"
+                       placeholder="타이틀 검색"
+                       type='search'
+                       onChange={myChangeHandler}/>
+
+            <TextField type='submit' open={confirmOpen} onCancel={() => setConfirmOpen(false)} onConfirm={SearchMutation} value="↳ Search ID"/>
 
         </form>
+
+
     )
 }
 

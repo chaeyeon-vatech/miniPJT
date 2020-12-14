@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql"
+import DeleteButton from "./DeleteButton";
 
 
 function BoardTable() {
@@ -43,6 +44,7 @@ function BoardTable() {
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
                     <td><i className="fa fa-trash fa-lg"></i></td>
+                    <td><DeleteButton post_id={content._id}/></td>
                 </tr>
 
             ))}

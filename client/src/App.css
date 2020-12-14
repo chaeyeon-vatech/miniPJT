@@ -169,7 +169,6 @@ address, caption, cite, code, dfn, em, var {
 }
 
 
-
 body {
     box-sizing: border-box;
     background-color: #d9c0c0;
@@ -207,7 +206,7 @@ body {
     background: #222;
 }
 
-.employees-table-body tr{
+.employees-table-body tr {
     background: #fff;
     transition: ease-in-out .3s;
 }
@@ -221,14 +220,14 @@ body {
     color: #f1f1f1;
 }
 
-.employees-table-body td{
+.employees-table-body td {
     padding: 15px 15px;
     font-size: .9em;
     font-weight: 600;
     cursor: pointer;
 }
 
-.employees-table-body tr i{
+.employees-table-body tr i {
     color: transparent;
     transition: ease-in-out .3s;
 }
@@ -260,7 +259,7 @@ body {
         display: block;
     }
 
-    .employees-table-head tr{
+    .employees-table-head tr {
         display: none;
     }
 
@@ -300,10 +299,21 @@ body {
         white-space: nowrap;
     }
 
-    .employees-table-body td:nth-of-type(1):after { content: "ID"; }
-    .employees-table-body td:nth-of-type(2):after { content: "Content"; }
-    .employees-table-body td:nth-of-type(3):after { content: "CreatedAt"; }
-    .employees-table-body td:nth-of-type(4):after { content: "Title"; }
+    .employees-table-body td:nth-of-type(1):after {
+        content: "ID";
+    }
+
+    .employees-table-body td:nth-of-type(2):after {
+        content: "Content";
+    }
+
+    .employees-table-body td:nth-of-type(3):after {
+        content: "CreatedAt";
+    }
+
+    .employees-table-body td:nth-of-type(4):after {
+        content: "Title";
+    }
 
     .employees-table-body td:last-child {
         border-bottom: none;
@@ -314,57 +324,61 @@ body {
         color: #222;
     }
 
-    .employees-table-body tr i{
+    .employees-table-body tr i {
         color: #e74c3c;
         transition: ease-in-out .3s;
     }
 
-}input[type=text] {
-     width: 100%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     box-sizing: border-box;
- }
-
-
-.search {
-    width: 100%;
-    position: relative;
-    display: flex;
 }
 
-.searchTerm {
-    width: 100%;
-    border: 3px solid #00B4CC;
-    border-right: none;
-    padding: 5px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
+input {
     outline: none;
-    color: #9DBFAF;
 }
 
-.searchTerm:focus{
-    color: #00B4CC;
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
 }
 
-.searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #00B4CC;
-    background: #00B4CC;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
 }
 
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+input[type=search] {
+    background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 9px 10px 9px 32px;
+    width: 55px;
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
 }
+
+input[type=search]:focus {
+    width: 130px;
+    background-color: #fff;
+    border-color: #66CC75;
+
+    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+}
+
+
+input:-moz-placeholder {
+    color: #999;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
