@@ -9,35 +9,13 @@ import {GraphQLNonNull, GraphQLString} from "graphql";
 
 function DeleteButton(post_id) {
 
-    // const[remove,{loading,error}] = useMutation(DELETE_MUTATION,{
-    //     update(cache,{data:{remove}}){
-    //         const localData = cloneDeep({
-    //             cache.readQuery({
-    //                 query: FETCH_POSTS_QUERY,
-    //                 variables:{id:}
-    //             })
-    //             }
-    //         )
-    //     }
-    // });
-
 
     const mutation = DELETE_MUTATION;
 
-    const [deletePostOrMutation] = useMutation(mutation, {
-            update(cache) {
-                const queryData = cache.readQuery({query: FETCH_POSTS_QUERY})
-                console.log(queryData);
-                // const cartItemId = data.contents._id
-                queryData.me._id = queryData.me._id.filter(v => v._id !== post_id)
-                console.log(queryData.me._id);
-                console.log(typeof (queryData.me._id));
-                cache.writeQuery({query: FETCH_POSTS_QUERY, data: {...queryData}})
-            },
-        variables: {id: post_id}
-        }
-    );
 
+    const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
+        refetchQueries: [{query: FETCH_POSTS_QUERY}]
+    })
 
 
     return (
@@ -47,7 +25,9 @@ function DeleteButton(post_id) {
             <form action="#">
 
                 <TextField type='submit'
-                           onClick={deletePostOrMutation} value="↳Delete"/>
+                           onClick={() => deletePostOrMutation({variables: {id: post_id}})}
+                           disabled={loading}
+                           value="↳Delete"/>
 
             </form>
 
@@ -63,20 +43,6 @@ const DELETE_MUTATION = gql`
         }
     }
 `;
-
-// const REMOVE_TODO = gql`
-//     +  mutation ($id: Int) {
-//     +    delete_todos (
-//     +      where: {
-//     +        id: {
-//     +          _eq: $id
-//     +        }
-//     +      }
-//     +    ) {
-//     +      affected_rows
-//     +    }
-//     +  }
-//     +`;
 
 
 export default DeleteButton;

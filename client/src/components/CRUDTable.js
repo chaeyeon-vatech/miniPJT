@@ -44,7 +44,6 @@ function BoardTable() {
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
                     <td><DeleteButton id={mongoose.Types.ObjectId(content._id)}/></td>
-                    console.log({mongoose.Types.ObjectId(content._id)})
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>
 
