@@ -22,19 +22,23 @@ function BoardTable() {
     return (
 
         <table className="employees-table">
-            <thead className="employees-table-head">
+            <thead>
+                <CreateButton/>
+            </thead>
+
+            <thead className="employees-table-head" >
 
             <tr style={{marginBottom: 20}}>
                 <th>ID</th>
                 <th>Content</th>
                 <th>CreatedAt</th>
                 <th>Title</th>
-                <th></th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody className="employees-table-body">
 
-            <CreateButton/>
+
 
             {contents &&
             contents.map((content) => (

@@ -3,45 +3,55 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
-import {IconButton} from "@material-ui/core";
-import {FormButton} from "semantic-ui-react";
-import {GraphQLNonNull, GraphQLString} from "graphql";
-import mongoose from 'mongoose';
-import {ObjectId} from "bson";
+import {useForm} from '../util/hooks';
+import {setContext} from "apollo-link-context";
 
 
-function CreateButton(title, content) {
+function CreateButton() {
 
-
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const mutation = CREATEMUTATION;
 
-
-    const [create, {error, loading}] = useMutation(mutation, {
+    const [create, {loading}] = useMutation(mutation, {
             refetchQueries: [{query: FETCH_POSTS_QUERY}],
-            variables: {title:title, content:content}
+            variables: {
+                title: title,
+                content: content
+            },
         }
     )
 
-    return (
-        <>
 
-                <tr style={{marginBottom: 20}}>
-                    <td>Content:<input onSubmit={content}/>}/></td>
-                    <td>Title:<input onSubmit={title}/></td>
-                    <TextField type='submit'
+    return (
+        <table className="employees-table">
+            <thead className="employees-table-head">
+
+            <tr style={{marginBottom: 20}}>
+                <th>Content</th>
+                <th>Title</th>
+                <th>Create</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody className="employees-table-body">
+
+            <tr style={{marginBottom: 20}}>
+
+                <td><input type="text" placeholder="content" onChange={e => setContent(e.target.value)}/></td>
+                <td><input type="text" placeholder="title" onChange={e => setTitle(e.target.value)}/></td>
+                <td><TextField type='submit'
                                onClick={create}
                                disabled={loading}
-                               value="↳Create"/>
+                               value="↳Create"/></td>
+            </tr>
+            </tbody>
+        </table>
 
-                </tr>
 
-
-        </>
     );
 
-    console.log(content,title);
 }
-
 
 
 const CREATEMUTATION = gql`
