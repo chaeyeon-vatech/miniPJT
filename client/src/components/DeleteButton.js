@@ -19,7 +19,6 @@ function DeleteButton(post_id) {
     return (
         <>
 
-
             <form action="#">
 
                 <TextField type='submit'

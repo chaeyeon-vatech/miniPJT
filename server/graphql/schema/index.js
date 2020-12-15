@@ -15,11 +15,8 @@ const typeDefs = gql`
     }
     type Mutation{
         createContent(contentInput: ContentInput): Content!
-        updateContent(_id: ID!, title:String, content:String): Content!
-        removeContent(_id: ID!): Content!
         searchByID(_id: ID!) : Content!
-        searchByTitle(title:String!): [Content]!
-        searchByContent(content:String): Content!
+
     }
 `;
 // input 타입은 인자가 적으면 그냥 넣어주면 되지만 만약에 인자 값이 10개가 넘어간다고 했을 때 한번에 넣을 수 있는 객체이다.

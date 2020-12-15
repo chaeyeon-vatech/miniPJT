@@ -33,7 +33,7 @@ function Search() {
             <Header/>
             <Menu/>
             <h1 className="table-title">Search🔍</h1>
-            <SearchBar/>
+            {/*<SearchBar/>*/}
             <BoardTable/>
             <Footer/>
         </div>
