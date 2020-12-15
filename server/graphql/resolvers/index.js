@@ -5,8 +5,55 @@ const resolvers = {
   Query: {
     async contents(_, args) {
       try {
-        const contents = await Content.find();
-        return contents;
+        const contents = await Content.find().sort({createdAt:-1});
+        const search = args.search || "";
+        const index = args.index;
+        const hasNext = args.hasNext;
+        let result = []
+        if ( args.category == 1) {
+          
+          for (let i=0; i < contents.length; i++ ) {
+            
+            if (contents[i].title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+              result.push(contents[i]);
+            }
+          }
+          if(hasNext == false){
+            result = result.slice(10*(index-1), result.length);
+          }
+          else{
+            result = result.slice(10*(index-1), 10*(index));
+          }
+        }
+        else if(args.category == 2){
+          for (let i=0; i < contents.length; i++ ) {
+            
+            if (contents[i].content.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+              result.push(contents[i]);
+            }
+          }
+          if(hasNext == false){
+            result = result.slice(10*(index-1), result.length);
+          }
+          else{
+            result = result.slice(10*(index-1), 10*(index));
+          }
+        }
+        else {
+          for (let i=0; i < contents.length; i++ ) {
+            
+            if (contents[i].content.toLowerCase().indexOf(search.toLowerCase()) > -1 || contents[i].title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+              result.push(contents[i]);
+            }
+          }
+          if(hasNext == false){
+            result = result.slice(10*(index-1), result.length);
+          }
+          else{
+            result = result.slice(10*(index-1), 10*(index));
+          }
+        }
+        return result;
       } catch (err) {
         console.log(err);
         throw err;
@@ -57,7 +104,7 @@ const resolvers = {
         throw new Error('Error: ', e)
       }
     },
-    searchOne: async (_, args) => {
+    searchByID: async (_, args) => {
       try {
         const searchcontent = await Content.findById(args._id).exec()
         return searchcontent
@@ -65,7 +112,22 @@ const resolvers = {
         throw new Error('Error: ', e)
       }
     },
-
+    searchByTitle: async (_, args) => {
+      try {
+        const searchtitle = await (await Content.find()).includes({title:args})
+        return searchtitle
+      } catch (e) {
+        throw new Error('Error: ', e)
+      }
+    },
+    searchByContent: async (_, args) => {
+      try {
+        const searchcontent = await Content.find(args.content).exec()
+        return searchcontent
+      } catch (e) {
+        throw new Error('Error: ', e)
+      }
+    },
   }
 };
 

@@ -1,23 +1,25 @@
 import gql from 'graphql-tag'; //gql은 자바스크립트로 스키마를 정의함 이것도 spring model 같음..? 거의 컨트롤러 같은 느낌
 const typeDefs = gql`
     type Query {
-        contents: [Content]
+        contents(search:String, category:Int, index:Int, hasNext:Boolean): [Content]
     }
     type Content {
         _id: ID
-        title: String
-        content: String
+        title: String!
+        content: String!
         createdAt: String
     }
     input ContentInput{
-        title: String
-        content: String
+        title: String!
+        content: String!
     }
     type Mutation{
         createContent(contentInput: ContentInput): Content!
-        updateContent(_id: String, title:String, content:String): Content!
+        updateContent(_id: ID!, title:String, content:String): Content!
         removeContent(_id: ID!): Content!
-        searchOne(_id: String) : Content!
+        searchByID(_id: ID!) : Content!
+        searchByTitle(title:String!): [Content]!
+        searchByContent(content:String): Content!
     }
 `;
 // input 타입은 인자가 적으면 그냥 넣어주면 되지만 만약에 인자 값이 10개가 넘어간다고 했을 때 한번에 넣을 수 있는 객체이다.
