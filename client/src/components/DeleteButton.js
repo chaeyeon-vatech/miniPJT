@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
@@ -6,6 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import {IconButton} from "@material-ui/core";
 import {FormButton} from "semantic-ui-react";
 import {GraphQLNonNull, GraphQLString} from "graphql";
+import mongoose from 'mongoose';
+import {ObjectId} from "bson";
+
 
 function DeleteButton(post_id) {
 
@@ -14,9 +17,10 @@ function DeleteButton(post_id) {
 
 
     const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
-        refetchQueries: [{query: FETCH_POSTS_QUERY}]
-    })
-
+            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            variables: {id: String(Object.values(post_id))}
+        }
+    )
 
     return (
         <>
@@ -25,7 +29,7 @@ function DeleteButton(post_id) {
             <form action="#">
 
                 <TextField type='submit'
-                           onClick={() => deletePostOrMutation({variables: {id: post_id}})}
+                           onClick={deletePostOrMutation}
                            disabled={loading}
                            value="↳Delete"/>
 
@@ -38,6 +42,7 @@ function DeleteButton(post_id) {
 const DELETE_MUTATION = gql`
     mutation removeContent($id: ID!){
         removeContent(_id:$id) {
+            _id
             title
             content
         }

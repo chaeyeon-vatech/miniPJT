@@ -17,6 +17,7 @@
     "apollo-link-http": "^1.5.17",
     "apollo-server": "^2.19.0",
     "axios": "^0.21.0",
+    "bson": "^4.2.2",
     "graphql-tag": "^2.11.0",
     "mongoose": "^5.11.6",
     "react": "^17.0.1",

@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
-
+import CreateButton from "./CreateButton";
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
-    const mongoose = require('mongoose');
     const {loading, data} = useQuery(FETCH_POSTS_QUERY);
 
 
@@ -24,7 +23,8 @@ function BoardTable() {
 
         <table className="employees-table">
             <thead className="employees-table-head">
-            <tr>
+
+            <tr style={{marginBottom: 20}}>
                 <th>ID</th>
                 <th>Content</th>
                 <th>CreatedAt</th>
@@ -33,6 +33,8 @@ function BoardTable() {
             </tr>
             </thead>
             <tbody className="employees-table-body">
+
+            <CreateButton/>
 
             {contents &&
             contents.map((content) => (
@@ -43,7 +45,7 @@ function BoardTable() {
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
-                    <td><DeleteButton id={mongoose.Types.ObjectId(content._id)}/></td>
+                    <td><DeleteButton post_id={content._id}/></td>
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>
 
