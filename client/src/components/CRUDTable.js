@@ -3,6 +3,7 @@ import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
+import UpdateButton from "./UpdateButton";
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
@@ -33,6 +34,7 @@ function BoardTable() {
                 <th>Content</th>
                 <th>CreatedAt</th>
                 <th>Title</th>
+                <th>Update</th>
                 <th>Delete</th>
             </tr>
             </thead>
@@ -48,6 +50,7 @@ function BoardTable() {
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
+                    <td><UpdateButton post_id={content._id}/></td>
                     <td><DeleteButton post_id={content._id}/></td>
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>

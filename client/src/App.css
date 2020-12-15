@@ -313,6 +313,7 @@ body {
         content: "CreatedAt";
     }
 
+
     .employees-table-body td:nth-of-type(4):after {
         content: "Title";
     }
@@ -323,7 +324,7 @@ body {
 
     .employees-table-body tr:hover {
         background: #fff;
-        color: #222;
+        color: #8f7c7c;
     }
 
     .employees-table-body tr i {

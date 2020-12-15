@@ -9,9 +9,10 @@ function CreateButton() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const mutation = CREATEMUTATION;
+    const createmutation = CREATEMUTATION;
 
-    const [create, {loading}] = useMutation(mutation, {
+
+    const [create, {loading}] = useMutation(createmutation, {
             refetchQueries: [{query: FETCH_POSTS_QUERY}],
             variables: {
                 title: title,
@@ -20,16 +21,15 @@ function CreateButton() {
         }
     )
 
-
     return (
         <table className="employees-table">
             <thead className="employees-table-head">
 
-            <tr style={{marginBottom: 20}}>
+            <tr style={{marginBottom: 20, marginLeft: 40}}>
                 <th>Content</th>
                 <th>Title</th>
                 <th>Create</th>
-                <th></th>
+
             </tr>
             </thead>
             <tbody className="employees-table-body">
