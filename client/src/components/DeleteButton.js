@@ -1,44 +1,37 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import gql from 'graphql-tag';
-import {useMutation} from '@apollo/react-hooks';
+import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
 import {IconButton} from "@material-ui/core";
 import {FormButton} from "semantic-ui-react";
+import {GraphQLNonNull, GraphQLString} from "graphql";
+import mongoose from 'mongoose';
+import {ObjectId} from "bson";
 
-function DeleteButton({post_id, callback}) {
-    const [confirmOpen, setConfirmOpen] = useState(false);
+
+function DeleteButton(post_id) {
+
 
     const mutation = DELETE_MUTATION;
 
-    const [deletePostOrMutation] = useMutation(mutation, {
-        update(proxy) {
-            setConfirmOpen(false);
-            if (post_id) {
-                const data = proxy.readQuery({
-                    query: FETCH_POSTS_QUERY
-                });
-                data.getPosts = data.getPosts.filter((p) => p.id !== post_id);
-                proxy.writeQuery({query: FETCH_POSTS_QUERY, data});
-            }
-            if (callback) callback();
-        },
-        variables: {
-            post_id
+
+    const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
+            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            variables: {id: String(Object.values(post_id))}
         }
-    });
+    )
+
     return (
         <>
 
 
             <form action="#">
-                <FormButton onClick={() => setConfirmOpen(true)}>
-                    <IconButton name="trash" style={{margin: 0}}/>
-                </FormButton>
 
-                <TextField type='submit' open={confirmOpen}
-                           onCancel={() => setConfirmOpen(false)}
-                           onConfirm={deletePostOrMutation} value="↳Delete"/>
+                <TextField type='submit'
+                           onClick={deletePostOrMutation}
+                           disabled={loading}
+                           value="↳Delete"/>
 
             </form>
 
@@ -47,8 +40,9 @@ function DeleteButton({post_id, callback}) {
 }
 
 const DELETE_MUTATION = gql`
-    mutation removeContent($post_id: ID!){
-        removeContent(_id:$post_id) {
+    mutation removeContent($id: ID!){
+        removeContent(_id:$id) {
+            _id
             title
             content
         }
