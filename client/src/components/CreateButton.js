@@ -3,8 +3,6 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
-import {useForm} from '../util/hooks';
-import {setContext} from "apollo-link-context";
 
 
 function CreateButton() {

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql"
-import DeleteButton from "./DeleteButton";
-
 
 function BoardTable() {
     const [contents, setContents] = useState([]);

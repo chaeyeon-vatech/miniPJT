@@ -3,12 +3,6 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
-// import {IconButton} from "@material-ui/core";
-// import {FormButton} from "semantic-ui-react";
-// import {GraphQLNonNull, GraphQLString} from "graphql";
-// import mongoose from 'mongoose';
-// import {ObjectId} from "bson";
-
 
 function DeleteButton(post_id) {
 

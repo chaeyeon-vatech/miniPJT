@@ -23,10 +23,10 @@ function BoardTable() {
 
         <table className="employees-table">
             <thead>
-                <CreateButton/>
+            <CreateButton/>
             </thead>
 
-            <thead className="employees-table-head" >
+            <thead className="employees-table-head">
 
             <tr style={{marginBottom: 20}}>
                 <th>ID</th>
@@ -37,7 +37,6 @@ function BoardTable() {
             </tr>
             </thead>
             <tbody className="employees-table-body">
-
 
 
             {contents &&

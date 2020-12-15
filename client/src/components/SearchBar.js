@@ -5,15 +5,6 @@ import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import SEARCH_MUTATION from "../util/mutation";
 
-const WebFont = require('webfontloader');
-
-
-WebFont.load({
-    google: {
-        families: ['Do Hyeon', 'Sansita Swashed']
-    }
-});
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
