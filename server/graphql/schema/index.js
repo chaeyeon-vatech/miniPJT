@@ -34,6 +34,7 @@ const typeDefs = gql`
         searchByContent(content:String): Content!
         registerUser(username: String, email: String!, password: String!): AuthPayload
         login (email: String!, password: String!): AuthPayload!
+        logout:Boolean!
     }
 `;
 // input 타입은 인자가 적으면 그냥 넣어주면 되지만 만약에 인자 값이 10개가 넘어간다고 했을 때 한번에 넣을 수 있는 객체이다.
