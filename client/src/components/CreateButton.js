@@ -22,8 +22,8 @@ function CreateButton() {
     )
 
     return (
-        <table className="employees-table">
-            <thead className="employees-table-head">
+        <table className="input-table">
+            <thead className="input-table-head">
 
             <tr style={{marginBottom: 20, marginLeft: 40}}>
                 <th>Content</th>
@@ -32,7 +32,7 @@ function CreateButton() {
 
             </tr>
             </thead>
-            <tbody className="employees-table-body">
+            <tbody className="input-table-body">
 
             <tr style={{marginBottom: 20}}>
 

@@ -10,3 +10,14 @@ export const FETCH_POSTS_QUERY = gql`
         }
     }
 `;
+
+export const SearchQuery = gql`
+    query contents($search:String!,$category:Int!,$index:Int!, $hasNext:Boolean!){
+        contents(search:$search,category:$category,index:$index,hasNext:$hasNext){
+            _id
+            title
+            content
+            createdAt
+        }
+    }
+`;

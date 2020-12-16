@@ -186,6 +186,69 @@ body {
     color: #222;
 }
 
+
+.input-table {
+
+    align-self: center;
+    align-content: center;
+    margin: 50px auto;
+    justifyContent: center;
+    max-width: 1000px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-table-body tr {
+    background: #fff;
+    width: 1000px;
+    transition: ease-in-out .3s;
+}
+
+.input-table-head th {
+    padding: 15px 15px;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: .9em;
+    align-self: center;
+    font-weight: 700;
+    color: #f1f1f1;
+    background: #3c3a3a;
+}
+
+.input-table-body tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.input-table-body tr:hover {
+    background: #949292;
+    color: #f1f1f1;
+}
+
+.input-table-body td {
+    padding: 15px 15px;
+    font-size: .9em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.input-table-body tr i {
+    color: transparent;
+    transition: ease-in-out .3s;
+}
+
+.input-table-body tr:hover i {
+    color: #e74c3c;
+}
+
+.input-table-body tr i:hover {
+    color: #c0392b;
+}
+
+
 .employees-table {
 
     align-self: center;
@@ -208,6 +271,7 @@ body {
     background: #222;
 }
 
+
 .employees-table-body tr {
     background: #fff;
     transition: ease-in-out .3s;
@@ -218,7 +282,7 @@ body {
 }
 
 .employees-table-body tr:hover {
-    background: #161515;
+    background: #949292;
     color: #f1f1f1;
 }
 
@@ -266,6 +330,20 @@ body {
     }
 
     .employees-table-body tr {
+        margin: 40px 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 10px rgb(208, 140, 108);
+    }
+
+
+    .input-table-head tr {
+        width: 1000px;
+        display: none;
+    }
+
+    .input-table-body tr {
+        width: 1000px;
         margin: 40px 10px;
         border-radius: 8px;
         overflow: hidden;
@@ -367,11 +445,11 @@ input[type=search] {
 }
 
 input[type=search]:focus {
-    width: 130px;
+    width: 200px;
     background-color: #fff;
-    border-color: #66CC75;
+    border-color: #6d706d;
 
-    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -webkit-box-shadow: 0 0 5px rgba(73, 76, 78, 0.5);
     -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
     box-shadow: 0 0 5px rgba(109, 207, 246, .5);
 }
@@ -383,5 +461,24 @@ input:-moz-placeholder {
 
 input::-webkit-input-placeholder {
     color: #999;
+}
+
+select {
+
+    width: 150px; /* 원하는 너비설정 */
+    font-family: inherit;  /* 폰트 상속 */
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+    margin: 0px auto;
+    alignItems: center;
+    justifyContent: center;
+    display: block;
+    LeftMargin: 30px;
 }
 

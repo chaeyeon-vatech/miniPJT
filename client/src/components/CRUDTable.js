@@ -16,13 +16,11 @@ function BoardTable() {
         }
     }, [data]);
 
-
-    console.log(data._id);
     if (loading) return 'Loading...'
 
     return (
 
-        <table className="employees-table">
+        <table className="input-table">
             <thead>
             <CreateButton/>
             </thead>
