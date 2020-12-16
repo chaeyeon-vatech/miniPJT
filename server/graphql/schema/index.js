@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'; //gql은 자바스크립트로 스키마를 정의함 이것도 spring model 같음..? 거의 컨트롤러 같은 느낌
 const typeDefs = gql`
     type Query {
-        contents(search:String, category:Int, index:Int, hasNext:Boolean): [Content]
+        contents(search:String, category:Int, index:Int, hasNext:Boolean): [Content]!
         user(id: ID!): User
         allUsers: [User!]!
         me: User
@@ -16,10 +16,10 @@ const typeDefs = gql`
         user: User
     }
     type Content {
-        _id: ID
+        _id: ID!
         title: String!
         content: String!
-        createdAt: String
+        createdAt: String!
     }
     input ContentInput{
         title: String!
