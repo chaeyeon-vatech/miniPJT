@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
+import {CREATEMUTATION} from "../util/mutation";
 
 
 function CreateButton() {
@@ -13,7 +14,7 @@ function CreateButton() {
 
 
     const [create, {loading}] = useMutation(createmutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index: 1}}],
             variables: {
                 title: title,
                 content: content
@@ -54,19 +55,7 @@ function CreateButton() {
 }
 
 
-const CREATEMUTATION = gql`
-    mutation createContent($title:String! $content:String!){
-        createContent(contentInput:{
-            title:$title,
-            content:$content
-        }){
-            _id
-            title
-            content
-            createdAt
-        }
-    }
-`;
+
 
 
 export default CreateButton;

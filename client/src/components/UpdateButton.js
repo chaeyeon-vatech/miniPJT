@@ -3,20 +3,22 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
+import {UPDATEMUTATION} from "../util/mutation";
 
 
 function UpdateButton(post_id) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
     const mutation = UPDATEMUTATION;
 
     const [update, {loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index:1}}],
             variables: {
                 title: title,
                 content: content,
-                id: String(Object.values(post_id))
+                id: String(Object.values(post_id)),
             },
         }
     )
@@ -42,21 +44,6 @@ function UpdateButton(post_id) {
 
 }
 
-const UPDATEMUTATION = gql`
-    mutation updateContent($id:ID! $title:String! $content:String! ){
-        updateContent(
-            _id:$id,
-            title:$title,
-            content:$content
-        ){
-            _id
-            title
-            content
-            createdAt
-        }
-    }
-
-`;
 
 
 export default UpdateButton;
