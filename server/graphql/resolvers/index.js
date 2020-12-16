@@ -61,10 +61,12 @@ const resolvers = {
         throw err;
       }
     },
+    // 로그인 되어 있는 나
     async me(_, args, { user }) {
       if(!user) throw new Error('You are not authenticated')
       return await users.findById(user.id)
     },
+    // id로 검색
     async user(root, { id }, { user }) {
       try {
         if(!user) throw new Error('You are not authenticated!')
@@ -73,6 +75,7 @@ const resolvers = {
         throw new Error(error.message)
       }
     },
+    // 모든 유저 검색
     async allUsers(root, args, { user }) {
       try {
         if (!user) throw new Error('You are not authenticated!')
@@ -134,8 +137,10 @@ const resolvers = {
         throw new Error('Error: ', e)
       }
     },
+    // 회원가입
     registerUser: async (root, { username, email, password })=> {
       try {
+        // 이메일 중복 체크
         const userConfirm = await users.findOne({ email : email})
         if(userConfirm != null){
           return "Already registered Email. Please try again.";
@@ -159,7 +164,7 @@ const resolvers = {
     },
     login: async(_, { email, password }) => {
       try {
-        // 이 부분 부터!!!!!!!!!!!!!!!!!!!!
+        // 유저 이메일 정보 확인 후 로그인
         const user = await users.findOne({ email : email})
         console.log(user);
         console.log(email);
@@ -187,7 +192,7 @@ const resolvers = {
       if(!user) {
         return false;
       }
-      else { // 로그인 상태라면(토큰이 존재하면)
+      else { // 로그인 상태라면(토큰이 존재하면) 토큰 비워주기
         user.token = '';
         return true;
       }
