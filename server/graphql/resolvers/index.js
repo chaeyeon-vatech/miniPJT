@@ -1,5 +1,7 @@
 import Content from '../../models/content.js';
-
+import users from '../../models/user.js';
+import bcrypt from 'bcryptjs';
+import jsonwebtoken from 'jsonwebtoken';
 // resolver에서 mutation을 정의하고 구현하는 걸 보니 가장 중요한 부분이 아닐까 싶다. service 단이라고 생각하자
 const resolvers = {
   Query: {
@@ -59,13 +61,33 @@ const resolvers = {
         throw err;
       }
     },
+    async me(_, args, { user }) {
+      if(!user) throw new Error('You are not authenticated')
+      return await users.findById(user.id)
+    },
+    async user(root, { id }, { user }) {
+      try {
+        if(!user) throw new Error('You are not authenticated!')
+        return users.findById(id)
+      } catch (error) {
+        throw new Error(error.message)
+      }
+    },
+    async allUsers(root, args, { user }) {
+      try {
+        if (!user) throw new Error('You are not authenticated!')
+        return users.find()
+      } catch (error) {
+        throw new Error(error.message)
+      }
+    }
   },
   Content: {
     _id(_, args) {
       return _._id;
     },
     title(_, args) {
-      return _.title;ß
+      return _.title;
     },
     content(_, args) {
       return _.content;
@@ -112,22 +134,55 @@ const resolvers = {
         throw new Error('Error: ', e)
       }
     },
-    searchByTitle: async (_, args) => {
+    registerUser: async (root, { username, email, password })=> {
       try {
-        const searchtitle = await (await Content.find()).includes({title:args})
-        return searchtitle
-      } catch (e) {
-        throw new Error('Error: ', e)
+        const userConfirm = await users.findOne({ email : email})
+        if(userConfirm != null){
+          return "Already registered Email. Please try again.";
+        }
+        const user = await users.create({
+          username,
+          email,
+          password: await bcrypt.hash(password, 10)
+        })
+        const token = jsonwebtoken.sign(
+          { id: user.id, email: user.email},
+          "somereallylongsecret",
+          { expiresIn: '1y' }
+        )
+        return {
+          token, id: user.id, username: user.username, email: user.email, message: "Authentication succesfull"
+        }
+      } catch (error) {
+        throw new Error(error.message)
       }
     },
-    searchByContent: async (_, args) => {
+    login: async(_, { email, password }) => {
       try {
-        const searchcontent = await Content.find(args.content).exec()
-        return searchcontent
-      } catch (e) {
-        throw new Error('Error: ', e)
+        // 이 부분 부터!!!!!!!!!!!!!!!!!!!!
+        const user = await users.findOne({ email : email})
+        console.log(user);
+        console.log(email);
+        if (!user) {
+          throw new Error('No user with that email')
+        }
+        const isValid = await bcrypt.compare(password, user.password)
+        if (!isValid) {
+          throw new Error('Incorrect password')
+        }
+        // return jwt
+        const token = jsonwebtoken.sign(
+          { id: user.id, email: user.email},
+          "somereallylongsecret",
+          { expiresIn: '1d'}
+        )
+        return {
+         token, user
+        }
+      } catch (error) {
+        throw new Error(error.message)
       }
-    },
+    }
   }
 };
 
