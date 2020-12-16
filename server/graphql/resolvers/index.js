@@ -7,52 +7,47 @@ const resolvers = {
     Query: {
         async contents(_, args) {
             try {
-                const contents = await Content.find().sort({createdAt:-1});
+                const contents = await Content.find().sort({createdAt: -1});
                 const search = args.search || "";
                 const index = args.index;
                 const hasNext = args.hasNext;
                 let result = []
-                if ( args.category == 1) {
+                if (args.category == 1) {
 
-                    for (let i=0; i < contents.length; i++ ) {
+                    for (let i = 0; i < contents.length; i++) {
 
                         if (contents[i].title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
                             result.push(contents[i]);
                         }
                     }
-                    if(hasNext == false){
-                        result = result.slice(10*(index-1), result.length);
+                    if (hasNext == false) {
+                        result = result.slice(10 * (index - 1), result.length);
+                    } else {
+                        result = result.slice(10 * (index - 1), 10 * (index));
                     }
-                    else{
-                        result = result.slice(10*(index-1), 10*(index));
-                    }
-                }
-                else if(args.category == 2){
-                    for (let i=0; i < contents.length; i++ ) {
+                } else if (args.category == 2) {
+                    for (let i = 0; i < contents.length; i++) {
 
                         if (contents[i].content.toLowerCase().indexOf(search.toLowerCase()) > -1) {
                             result.push(contents[i]);
                         }
                     }
-                    if(hasNext == false){
-                        result = result.slice(10*(index-1), result.length);
+                    if (hasNext == false) {
+                        result = result.slice(10 * (index - 1), result.length);
+                    } else {
+                        result = result.slice(10 * (index - 1), 10 * (index));
                     }
-                    else{
-                        result = result.slice(10*(index-1), 10*(index));
-                    }
-                }
-                else {
-                    for (let i=0; i < contents.length; i++ ) {
+                } else {
+                    for (let i = 0; i < contents.length; i++) {
 
                         if (contents[i].content.toLowerCase().indexOf(search.toLowerCase()) > -1 || contents[i].title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
                             result.push(contents[i]);
                         }
                     }
-                    if(hasNext == false){
-                        result = result.slice(10*(index-1), result.length);
-                    }
-                    else{
-                        result = result.slice(10*(index-1), 10*(index));
+                    if (hasNext == false) {
+                        result = result.slice(10 * (index - 1), result.length);
+                    } else {
+                        result = result.slice(10 * (index - 1), 10 * (index));
                     }
                 }
                 return result;
@@ -62,21 +57,21 @@ const resolvers = {
             }
         },
         // 로그인 되어 있는 나
-        async me(_, args, { user }) {
-            if(!user) throw new Error('You are not authenticated')
+        async me(_, args, {user}) {
+            if (!user) throw new Error('You are not authenticated')
             return await users.findById(user.id)
         },
         // id로 검색
-        async user(root, { id }, { user }) {
+        async user(root, {id}, {user}) {
             try {
-                if(!user) throw new Error('You are not authenticated!')
+                if (!user) throw new Error('You are not authenticated!')
                 return users.findById(id)
             } catch (error) {
                 throw new Error(error.message)
             }
         },
         // 모든 유저 검색
-        async allUsers(root, args, { user }) {
+        async allUsers(root, args, {user}) {
             try {
                 if (!user) throw new Error('You are not authenticated!')
                 return users.find()
@@ -119,7 +114,7 @@ const resolvers = {
                 throw new Error('Error: ', e)
             }
         },
-        updateContent: async (_, {_id,title,content}) => {
+        updateContent: async (_, {_id, title, content}) => {
             try {
                 const updatedContent = await Content.findByIdAndUpdate(_id, {
                     $set: {title, content}
@@ -138,11 +133,11 @@ const resolvers = {
             }
         },
         // 회원가입
-        registerUser: async (root, { username, email, password })=> {
+        registerUser: async (root, {username, email, password}) => {
             try {
                 // 이메일 중복 체크
-                const userConfirm = await users.findOne({ email : email})
-                if(userConfirm != null){
+                const userConfirm = await users.findOne({email: email})
+                if (userConfirm != null) {
                     return "Already registered Email. Please try again.";
                 }
                 const user = await users.create({
@@ -151,9 +146,9 @@ const resolvers = {
                     password: await bcrypt.hash(password, 10)
                 })
                 const token = jsonwebtoken.sign(
-                    { id: user.id, email: user.email},
+                    {id: user.id, email: user.email},
                     "somereallylongsecret",
-                    { expiresIn: '1y' }
+                    {expiresIn: '1y'}
                 )
                 return {
                     token, id: user.id, username: user.username, email: user.email, message: "Authentication succesfull"
@@ -162,10 +157,10 @@ const resolvers = {
                 throw new Error(error.message)
             }
         },
-        login: async(_, { email, password }) => {
+        login: async (_, {email, password}) => {
             try {
                 // 유저 이메일 정보 확인 후 로그인
-                const user = await users.findOne({ email : email})
+                const user = await users.findOne({email: email})
                 console.log(user);
                 console.log(email);
                 if (!user) {
@@ -177,9 +172,9 @@ const resolvers = {
                 }
                 // return jwt
                 const token = jsonwebtoken.sign(
-                    { id: user.id, email: user.email},
+                    {id: user.id, email: user.email},
                     "somereallylongsecret",
-                    { expiresIn: '1d'}
+                    {expiresIn: '1d'}
                 )
                 return {
                     token, user
@@ -188,11 +183,10 @@ const resolvers = {
                 throw new Error(error.message)
             }
         },
-        logout: async(_, __, { user }) => {
-            if(!user) {
+        logout: async (_, __, {user}) => {
+            if (!user) {
                 return false;
-            }
-            else { // 로그인 상태라면(토큰이 존재하면) 토큰 비워주기
+            } else { // 로그인 상태라면(토큰이 존재하면) 토큰 비워주기
                 user.token = '';
                 return true;
             }
