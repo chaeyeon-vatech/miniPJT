@@ -3,11 +3,9 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
-import {useForm} from '../util/hooks';
-import {setContext} from "apollo-link-context";
 
 
-function UpdateButton() {
+function UpdateButton(post_id) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -17,40 +15,27 @@ function UpdateButton() {
             refetchQueries: [{query: FETCH_POSTS_QUERY}],
             variables: {
                 title: title,
-                content: content
+                content: content,
+                id: String(Object.values(post_id))
             },
         }
     )
 
 
     return (
-        <table className="employees-table">
-            <thead className="employees-table-head">
+
+        <>
 
             <tr style={{marginBottom: 20}}>
-                <th>Content</th>
-                <th>Title</th>
-                <th>Create</th>
-
-            </tr>
-            </thead>
-            <tbody className="employees-table-body">
-
-            <tr style={{marginBottom: 20}}>
-                <TextField type='submit'
-                           onClick={update}
-                           disabled={loading}
-                           value="↳Delete"/>
 
                 <td><input type="text" placeholder="content" onChange={e => setContent(e.target.value)}/></td>
                 <td><input type="text" placeholder="title" onChange={e => setTitle(e.target.value)}/></td>
                 <td><TextField type='submit'
                                onClick={update}
                                disabled={loading}
-                               value="↳Create"/></td>
+                               value="↳Update"/></td>
             </tr>
-            </tbody>
-        </table>
+        </>
 
 
     );

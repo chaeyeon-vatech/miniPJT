@@ -6,7 +6,6 @@ import './App.css';
 import Main from "./pages/Main";
 import Search from "./pages/Search";
 import Crud from "./pages/Crud";
-import WriteForm from "./components/WriteForm";
 
 
 class App extends Component {

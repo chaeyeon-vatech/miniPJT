@@ -218,7 +218,7 @@ body {
 }
 
 .employees-table-body tr:hover {
-    background: #222;
+    background: #ae9696;
     color: #f1f1f1;
 }
 
@@ -249,6 +249,7 @@ body {
 
     .employees-table {
         box-shadow: none;
+        text-align:center;
         margin: 0;
     }
 
@@ -354,7 +355,7 @@ input[type=search] {
     background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     border: solid 1px #ccc;
     padding: 9px 10px 9px 32px;
-    width: 55px;
+    width: 200px;
 
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
@@ -366,11 +367,11 @@ input[type=search] {
 }
 
 input[type=search]:focus {
-    width: 130px;
+    width: 200px;
     background-color: #fff;
-    border-color: #66CC75;
+    border-color: #6d706d;
 
-    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+    -webkit-box-shadow: 0 0 5px rgba(73, 76, 78, 0.5);
     -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
     box-shadow: 0 0 5px rgba(109, 207, 246, .5);
 }
@@ -384,3 +385,48 @@ input::-webkit-input-placeholder {
     color: #999;
 }
 
+select {
+
+    width: 150px; /* 원하는 너비설정 */
+    font-family: inherit;  /* 폰트 상속 */
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+    margin: 0px auto;
+    alignItems: center;
+    justifyContent: center;
+    display: block;
+    LeftMargin: 30px;
+}
+
+.pagination {
+    display: inline-block;
+    margin: 0px auto;
+    alignItems: center;
+    justifyContent: center;
+    display: block;
+    LeftMargin: 30px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #2a3640;
+    color: white;
+    border: 1px solid #14202b;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

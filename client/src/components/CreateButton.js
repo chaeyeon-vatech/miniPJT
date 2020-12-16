@@ -3,17 +3,16 @@ import gql from 'graphql-tag';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
-import {useForm} from '../util/hooks';
-import {setContext} from "apollo-link-context";
 
 
 function CreateButton() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const mutation = CREATEMUTATION;
+    const createmutation = CREATEMUTATION;
 
-    const [create, {loading}] = useMutation(mutation, {
+
+    const [create, {loading}] = useMutation(createmutation, {
             refetchQueries: [{query: FETCH_POSTS_QUERY}],
             variables: {
                 title: title,
@@ -22,16 +21,16 @@ function CreateButton() {
         }
     )
 
-
     return (
         <table className="employees-table">
             <thead className="employees-table-head">
 
-            <tr style={{marginBottom: 20}}>
+            <tr style={{marginBottom: 20, marginLeft: 40}}>
                 <th>Content</th>
                 <th>Title</th>
                 <th>Create</th>
-                <th></th>
+
+
             </tr>
             </thead>
             <tbody className="employees-table-body">
@@ -44,6 +43,7 @@ function CreateButton() {
                                onClick={create}
                                disabled={loading}
                                value="↳Create"/></td>
+
             </tr>
             </tbody>
         </table>

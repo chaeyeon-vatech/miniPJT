@@ -2,8 +2,13 @@ import React, {useEffect, useState} from 'react'
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from '@material-ui/core/styles';
 import {useMutation, useQuery} from '@apollo/react-hooks';
-import {FETCH_POSTS_QUERY} from '../util/graphql';
-import SEARCH_MUTATION from "../util/mutation";
+import {SearchQuery} from '../util/graphql';
+import CreateButton from "./CreateButton";
+import UpdateButton from "./UpdateButton";
+import DeleteButton from "./DeleteButton";
+import gql from "graphql-tag";
+import {render} from "@testing-library/react";
+import {getPageCount} from "@material-ui/data-grid";
 
 const WebFont = require('webfontloader');
 
@@ -23,57 +28,123 @@ const useStyles = makeStyles((theme) => ({
             alignItems: 'center',
             justifyContent: 'center',
             display: 'block',
-            LeftMargin: "30px",
             FontFamily: 'Do Hyeon'
         },
 
     }
 }))
 
-
-function SearchBar({id, callback}) {
+function SearchBar() {
     const classes = useStyles();
-    const [confirmOpen, setConfirmOpen] = useState(false);
+    const [contents, setContents] = useState();
 
-    const [SearchMutation] = useMutation(SEARCH_MUTATION, {
-        update(proxy) {
-            setConfirmOpen(false);
-            if (id) {
-                const data = proxy.readQuery({
-                    query: FETCH_POSTS_QUERY
-                });
-                data.getPosts = data.getPosts.filter((p) => p.id === id);
-                proxy.writeQuery({query: FETCH_POSTS_QUERY, data});
-            }
-            if (callback) callback();
-        }
+    const [search, setSearch] = useState('');
+    const [category, setCategory] = useState(0);
+    const [index, setIndex] = useState(1);
+    const [hasNext, setNext] = useState(true);
+    const {data, loading, error} = useQuery(SearchQuery, {
+        variables: {
+            search: search,
+            category: category,
+            index: index,
+            hasNext: hasNext
+        },
+
     });
 
-    const mySubmitHandler = (event) => {
-        event.preventDefault();
-        alert("You are submitting");
-    }
-    const myChangeHandler = (event) => {
-        // this.setState({username: event.target.value});
-    }
+    // const pageNumbers = [];
+    //
+
+
+    console.log(contents && contents.length);
+    console.log(data && data.length);
+
+    //
+    // console.log(pageNumbers);
+
+    useEffect(() => {
+        if (data) {
+            setContents(data.contents);
+        }
+    }, [data]);
+
+    console.log(contents)
+    console.log(data)
+
 
     return (
+        <>
+
+            <form className={classes.root} action="#">
+                <select id="category" name="category" className="select"
+                        onChange={e => setCategory(parseInt(e.target.value))} required>
+                    <option value="0">Select</option>
+                    <option value="0">전체 검색</option>
+                    <option value="1">제목 검색</option>
+                    <option value="2">컨텐츠 검색</option>
+                </select>
+
+                <TextField required id="standard-required" label="검색"
+                           placeholder="타이틀 검색"
+                           type='search'
+                           onChange={e => setSearch(e.target.value)}/>
 
 
-        <form className={classes.root} action="#" onSubmit={mySubmitHandler}>
+            </form>
 
-            <TextField required id="standard-required" label="검색"
-                       placeholder="타이틀 검색"
-                       type='search'
-                       onChange={myChangeHandler}/>
+            <table className="employees-table">
 
-            <TextField type='submit' open={confirmOpen} onCancel={() => setConfirmOpen(false)}
-                       onConfirm={SearchMutation} value="↳ Search ID"/>
+                <thead className="employees-table-head">
 
-        </form>
+                <tr style={{marginBottom: 20}}>
+                    <th>ID</th>
+                    <th>Content</th>
+                    <th>CreatedAt</th>
+                    <th>Title</th>
 
+                </tr>
+                </thead>
+
+
+                <tbody className="employees-table-body">
+
+                {contents &&
+                contents.map((content) => (
+
+                    <tr key={content._id} style={{marginBottom: 20}}>
+                        <td>{content._id}</td>
+                        <td>{content.content}</td>
+                        <td>{content.createdAt}</td>
+                        <td>{content.title}</td>
+                        <td><i className="fa fa-trash fa-lg"></i></td>
+                    </tr>
+
+                ))}
+
+
+                </tbody>
+
+
+                <nav>
+                    <ul class="pagination">
+
+                        <li key={index}>
+
+                            <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>
+                            <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>
+
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </table>
+
+        </>
 
     )
+
+
 }
 
 

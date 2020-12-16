@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY} from "../util/graphql"
-import DeleteButton from "./DeleteButton";
-
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
-
-    const {loading, data} = useQuery(FETCH_POSTS_QUERY);
-
+    // const [index, setIndex] = useState(1);
+    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY);
 
     useEffect(() => {
         if (data) {
@@ -45,6 +42,19 @@ function BoardTable() {
             ))}
 
             </tbody>
+
+            {/*<nav>*/}
+            {/*    <ul className="pagination">*/}
+
+            {/*        <li key={index}>*/}
+
+            {/*            <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>*/}
+            {/*            <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>*/}
+
+            {/*        </li>*/}
+
+            {/*    </ul>*/}
+            {/*</nav>*/}
         </table>
 
     )

@@ -25,7 +25,7 @@ function Crud() {
         <div>
             <Header/>
             <Menu/>
-            <h1 className="table-title">CRUD</h1>
+            <h1 className="table-title">CRUD TABLE</h1>
             <CRUDTable/>
             <Footer/>
         </div>

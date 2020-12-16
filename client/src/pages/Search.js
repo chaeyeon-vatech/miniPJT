@@ -5,28 +5,11 @@ import Footer from "../layout/Footer";
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import {useQuery} from "@apollo/react-hooks";
 import BoardTable from "../components/BoardTable";
-import TextField from '@material-ui/core/TextField';
-import SearchBar from "../components/SearchBar";
+import SearchBar, {SearchTable} from "../components/SearchBar";
 
 
 function Search() {
-
-    const [contents, setContents] = useState([]);
-
-    const {loading, data} = useQuery(FETCH_POSTS_QUERY);
-
-
-    useEffect(() => {
-        if (data) {
-            setContents(data.contents);
-        }
-    }, [data]);
-
-    console.log(contents);
-
-    console.log(contents._id);
-
-    if (loading) return 'Loading...'
+    
 
     return (
         <div>
@@ -34,7 +17,6 @@ function Search() {
             <Menu/>
             <h1 className="table-title">Search🔍</h1>
             <SearchBar/>
-            <BoardTable/>
             <Footer/>
         </div>
     )

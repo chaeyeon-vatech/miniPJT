@@ -14,21 +14,21 @@ import dbConnect from './models/index.js';
 dbConnect();
 const getUser = token => {
     try {
-      if (token) {
-        return jwt.verify(token, "somereallylongsecret")
-      }
-      return null
+        if (token) {
+            return jwt.verify(token, "somereallylongsecret")
+        }
+        return null
     } catch (error) {
-      return null
+        return null
     }
 }
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => {
+    context: ({req}) => {
         const token = req.get('Authorization') || ''
-        return { user: getUser(token.replace('Bearer', ''))}
-      },
+        return {user: getUser(token.replace('Bearer', ''))}
+    },
     introspection: true,
     playground: true
 });
@@ -36,3 +36,4 @@ const server = new ApolloServer({
 server.listen().then(({url}) => {
     console.log(`🚀 Server ready at ${url}`);
 });
+

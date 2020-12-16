@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY} from "../util/graphql"
+import {FETCH_POSTS_QUERY, SearchQuery} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
+import UpdateButton from "./UpdateButton";
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
-    const {loading, data} = useQuery(FETCH_POSTS_QUERY);
-
+    // const [index, setIndex] = useState(1);
+    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY);
 
     useEffect(() => {
         if (data) {
@@ -15,29 +16,27 @@ function BoardTable() {
         }
     }, [data]);
 
-
-    console.log(data._id);
     if (loading) return 'Loading...'
 
     return (
 
         <table className="employees-table">
             <thead>
-                <CreateButton/>
+            <CreateButton/>
             </thead>
 
-            <thead className="employees-table-head" >
+            <thead className="employees-table-head">
 
             <tr style={{marginBottom: 20}}>
                 <th>ID</th>
                 <th>Content</th>
                 <th>CreatedAt</th>
                 <th>Title</th>
+                <th>Update</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody className="employees-table-body">
-
 
 
             {contents &&
@@ -49,6 +48,7 @@ function BoardTable() {
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>
+                    <td><UpdateButton post_id={content._id}/></td>
                     <td><DeleteButton post_id={content._id}/></td>
                     <td><i className="fa fa-trash fa-lg"></i></td>
                 </tr>
@@ -56,7 +56,22 @@ function BoardTable() {
             ))}
 
             </tbody>
+
+            {/*<nav>*/}
+            {/*    <ul className="pagination">*/}
+
+            {/*        <li key={index}>*/}
+
+            {/*            <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>*/}
+            {/*            <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>*/}
+
+            {/*        </li>*/}
+
+            {/*    </ul>*/}
+            {/*</nav>*/}
+
         </table>
+
 
     )
 }
