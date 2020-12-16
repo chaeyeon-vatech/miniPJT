@@ -8,6 +8,7 @@ import UpdateButton from "./UpdateButton";
 import DeleteButton from "./DeleteButton";
 import gql from "graphql-tag";
 import {render} from "@testing-library/react";
+import {getPageCount} from "@material-ui/data-grid";
 
 const WebFont = require('webfontloader');
 
@@ -37,7 +38,6 @@ function SearchBar() {
     const classes = useStyles();
     const [contents, setContents] = useState();
 
-
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState(0);
     const [index, setIndex] = useState(1);
@@ -51,6 +51,17 @@ function SearchBar() {
         },
 
     });
+
+    // const pageNumbers = [];
+    //
+
+
+
+    console.log(contents && contents.length);
+    console.log(data && data.length);
+
+    //
+    // console.log(pageNumbers);
 
     useEffect(() => {
         if (data) {
@@ -96,25 +107,41 @@ function SearchBar() {
                 </thead>
 
 
-            <tbody className="employees-table-body">
+                <tbody className="employees-table-body">
 
-            {contents &&
-            contents.map((content) => (
-
-
-
-                <tr key={content._id} style={{marginBottom: 20}}>
-                    <td>{content._id}</td>
-                    <td>{content.content}</td>
-                    <td>{content.createdAt}</td>
-                    <td>{content.title}</td>
-                    <td><i className="fa fa-trash fa-lg"></i></td>
-                </tr>
-
-            ))}
+                {contents &&
+                contents.map((content) => (
 
 
-            </tbody>
+
+                    <tr key={content._id} style={{marginBottom: 20}}>
+                        <td>{content._id}</td>
+                        <td>{content.content}</td>
+                        <td>{content.createdAt}</td>
+                        <td>{content.title}</td>
+                        <td><i className="fa fa-trash fa-lg"></i></td>
+                    </tr>
+
+                ))}
+
+
+                </tbody>
+
+
+
+                <nav>
+                    <ul class="pagination">
+
+                             <li key={index}>
+
+                                 <a onClick={() => setIndex(index-1)} className='page-link'>🔙</a>
+                                 <a onClick={() => setIndex(index+1)} className='page-link'>🔜</a>
+
+                             </li>
+
+                    </ul>
+                </nav>
+
             </table>
 
         </>

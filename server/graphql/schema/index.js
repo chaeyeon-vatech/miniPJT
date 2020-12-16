@@ -15,6 +15,8 @@ const typeDefs = gql`
     }
     type Mutation{
         createContent(contentInput: ContentInput): Content!
+        updateContent(_id: ID!, title:String, content:String): Content!
+        removeContent(_id: ID!): Content!
         searchByID(_id: ID!) : Content!
 
     }
