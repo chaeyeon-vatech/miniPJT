@@ -2,6 +2,7 @@ import gql from 'graphql-tag'; //gql은 자바스크립트로 스키마를 정�
 const typeDefs = gql`
     type Query {
         contents(search:String, category:Int, index:Int, hasNext:Boolean): [Content]!
+        maxIndex : Int!
         user(id: ID!): User
         allUsers: [User!]!
         me: User
@@ -10,7 +11,7 @@ const typeDefs = gql`
         id: ID!
         username: String
         email: String!
-    }
+      }
     type AuthPayload {
         token: String
         user: User

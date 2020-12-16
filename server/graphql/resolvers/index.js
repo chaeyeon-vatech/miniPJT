@@ -56,6 +56,10 @@ const resolvers = {
                 throw err;
             }
         },
+        async maxIndex(){
+          const contents = await Content.find().sort({createdAt: -1});
+          return contents.length;
+        },
         // 로그인 되어 있는 나
         async me(_, args, {user}) {
             if (!user) throw new Error('You are not authenticated')
