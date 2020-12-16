@@ -30,8 +30,6 @@ const typeDefs = gql`
         updateContent(_id: ID!, title:String, content:String): Content!
         removeContent(_id: ID!): Content!
         searchByID(_id: ID!) : Content!
-        searchByTitle(title:String!): [Content]!
-        searchByContent(content:String): Content!
         registerUser(username: String, email: String!, password: String!): AuthPayload
         login (email: String!, password: String!): AuthPayload!
         logout:Boolean!
