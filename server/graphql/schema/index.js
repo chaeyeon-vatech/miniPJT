@@ -2,6 +2,18 @@ import gql from 'graphql-tag'; //gql은 자바스크립트로 스키마를 정�
 const typeDefs = gql`
     type Query {
         contents(search:String, category:Int, index:Int, hasNext:Boolean): [Content]
+        user(id: ID!): User
+        allUsers: [User!]!
+        me: User
+    }
+    type User {
+        id: ID!
+        username: String
+        email: String!
+      }
+    type AuthPayload {
+        token: String
+        user: User
     }
     type Content {
         _id: ID
@@ -20,6 +32,8 @@ const typeDefs = gql`
         searchByID(_id: ID!) : Content!
         searchByTitle(title:String!): [Content]!
         searchByContent(content:String): Content!
+        registerUser(username: String, email: String!, password: String!): AuthPayload
+        login (email: String!, password: String!): AuthPayload!
     }
 `;
 // input 타입은 인자가 적으면 그냥 넣어주면 되지만 만약에 인자 값이 10개가 넘어간다고 했을 때 한번에 넣을 수 있는 객체이다.
