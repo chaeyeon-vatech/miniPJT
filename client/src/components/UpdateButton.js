@@ -9,14 +9,15 @@ function UpdateButton(post_id) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
     const mutation = UPDATEMUTATION;
 
     const [update, {loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index:1}}],
             variables: {
                 title: title,
                 content: content,
-                id: String(Object.values(post_id))
+                id: String(Object.values(post_id)),
             },
         }
     )

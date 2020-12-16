@@ -11,7 +11,7 @@ function DeleteButton(post_id) {
 
 
     const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY,variables:{index:1}}],
             variables: {id: String(Object.values(post_id))}
         }
     )
