@@ -5,14 +5,14 @@ import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";
 import {DELETE_MUTATION} from "../util/mutation";
 
-function DeleteButton(post_id) {
+function DeleteButton(post_id, index) {
 
 
     const mutation = DELETE_MUTATION;
 
 
     const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY, variables:{index:1  }}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables:{index: 1}}],
             variables: {id: String(Object.values(post_id))}
         }
     )
@@ -32,7 +32,6 @@ function DeleteButton(post_id) {
         </>
     );
 }
-
 
 
 export default DeleteButton;

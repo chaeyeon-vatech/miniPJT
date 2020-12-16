@@ -5,7 +5,7 @@ import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
 import UpdateButton from "./UpdateButton";
 
-function BoardTable() {
+function CrudTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
 
@@ -15,7 +15,9 @@ function BoardTable() {
         }
     });
 
-    console.log("1",contents && contents.length);
+    console.log(index);
+
+    // console.log("1",contents && contents.length);
 
     useEffect(() => {
         if (data) {
@@ -82,4 +84,4 @@ function BoardTable() {
     )
 }
 
-export default BoardTable;
+export default CrudTable;

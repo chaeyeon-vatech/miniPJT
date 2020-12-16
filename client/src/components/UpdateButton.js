@@ -19,7 +19,7 @@ function UpdateButton(post_id) {
                 title: title,
                 content: content,
                 id: String(Object.values(post_id)),
-            },
+            }
         }
     )
 

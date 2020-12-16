@@ -5,8 +5,32 @@ import {FETCH_POSTS_QUERY, PageQuery} from "../util/graphql"
 function BoardTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
+    // const paginate = pageNumber => setIndex(pageNumber);
+    // const pageNumbers = [];
 
-    console.log(index)
+    // function getValueByKey(object, value) {
+    //     return Object.values(object).find(key => object[key] === value);
+    // }
+    //
+    // console.log(getValueByKey(useQuery(PageQuery).data,"maxIndex"));
+    //
+    // const value = Object.keys(useQuery(PageQuery).data).find(key => useQuery(PageQuery).data[key] === key);
+
+    //
+    // console.log(Object.values(useQuery(PageQuery).data));
+    //
+    // const maxIndex = Object.values(useQuery(PageQuery).data);
+    //
+    //
+    //
+    // console.log(maxIndex)
+    // for (let i = 1; i <= Math.ceil(80/ 10); i++) {
+    //     pageNumbers.push(i);
+    // }
+    //
+
+
+
 
     const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
@@ -14,10 +38,6 @@ function BoardTable() {
         }
     });
 
-
-    const {length} = useQuery(PageQuery)
-
-    console.log({length})
 
     useEffect(() => {
         if (data) {
@@ -60,13 +80,14 @@ function BoardTable() {
 
                     <li key={index}>
 
-                        <a onClick={(index) => setIndex(index - 1)} className='page-link'>🔙</a>
-                        <a onClick={(index) => setIndex(index + 1)} className='page-link'>🔜</a>
+                        <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>
+                        <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>
 
                     </li>
 
                 </ul>
             </nav>
+
         </table>
 
     )
