@@ -4,15 +4,8 @@ import {FETCH_POSTS_QUERY} from "../util/graphql"
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
-    const [index, setIndex] = useState(1);
-    const [hasNext, setNext] = useState(true);
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
-        variables: {
-            index: index,
-            hasNext: hasNext
-        },
-
-    });
+    // const [index, setIndex] = useState(1);
+    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY);
 
     useEffect(() => {
         if (data) {
@@ -50,18 +43,18 @@ function BoardTable() {
 
             </tbody>
 
-            <nav>
-                <ul className="pagination">
+            {/*<nav>*/}
+            {/*    <ul className="pagination">*/}
 
-                    <li key={index}>
+            {/*        <li key={index}>*/}
 
-                        <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>
-                        <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>
+            {/*            <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>*/}
+            {/*            <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>*/}
 
-                    </li>
+            {/*        </li>*/}
 
-                </ul>
-            </nav>
+            {/*    </ul>*/}
+            {/*</nav>*/}
         </table>
 
     )
