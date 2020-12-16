@@ -56,7 +56,6 @@ function SearchBar() {
     //
 
 
-
     console.log(contents && contents.length);
     console.log(data && data.length);
 
@@ -112,8 +111,6 @@ function SearchBar() {
                 {contents &&
                 contents.map((content) => (
 
-
-
                     <tr key={content._id} style={{marginBottom: 20}}>
                         <td>{content._id}</td>
                         <td>{content.content}</td>
@@ -128,16 +125,15 @@ function SearchBar() {
                 </tbody>
 
 
-
                 <nav>
                     <ul class="pagination">
 
-                             <li key={index}>
+                        <li key={index}>
 
-                                 <a onClick={() => setIndex(index-1)} className='page-link'>🔙</a>
-                                 <a onClick={() => setIndex(index+1)} className='page-link'>🔜</a>
+                            <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>
+                            <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>
 
-                             </li>
+                        </li>
 
                     </ul>
                 </nav>

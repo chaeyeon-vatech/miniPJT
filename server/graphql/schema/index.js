@@ -33,7 +33,7 @@ const typeDefs = gql`
         registerUser(username: String, email: String!, password: String!): AuthPayload
         login (email: String!, password: String!): AuthPayload!
         logout:Boolean!
-    }s
+    }
 `;
 // input 타입은 인자가 적으면 그냥 넣어주면 되지만 만약에 인자 값이 10개가 넘어간다고 했을 때 한번에 넣을 수 있는 객체이다.
 // mutation은 리소스를 변경할 때 만들어주는 것이고 아마 CRUD 구성하는 모든 함수가 여기 들어가지 않을까 싶다.
