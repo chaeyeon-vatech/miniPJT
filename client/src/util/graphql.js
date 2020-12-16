@@ -32,3 +32,9 @@ export const SearchQuery = gql`
         }
     }
 `;
+
+export const PageQuery = gql`
+    query {
+        maxIndex
+    }
+`;

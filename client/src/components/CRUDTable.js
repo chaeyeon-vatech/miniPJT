@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useQuery} from "@apollo/react-hooks";
+import {useMutation, useQuery} from "@apollo/react-hooks";
 import {FETCH_POSTS_QUERY, SearchQuery} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
@@ -8,6 +8,7 @@ import UpdateButton from "./UpdateButton";
 function BoardTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
+
     const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
