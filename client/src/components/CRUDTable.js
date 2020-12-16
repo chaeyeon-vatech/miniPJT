@@ -20,7 +20,7 @@ function BoardTable() {
 
     return (
 
-        <table className="input-table">
+        <table className="employees-table">
             <thead>
             <CreateButton/>
             </thead>

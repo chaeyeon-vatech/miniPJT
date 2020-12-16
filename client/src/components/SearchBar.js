@@ -104,7 +104,7 @@ function SearchBar() {
 
 
                 <tr key={content._id} style={{marginBottom: 20}}>
-                    <td>{content._id}  console.log(content._id)</td>
+                    <td>{content._id}</td>
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>
                     <td>{content.title}</td>

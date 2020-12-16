@@ -22,17 +22,18 @@ function CreateButton() {
     )
 
     return (
-        <table className="input-table">
-            <thead className="input-table-head">
+        <table className="employees-table">
+            <thead className="employees-table-head">
 
             <tr style={{marginBottom: 20, marginLeft: 40}}>
                 <th>Content</th>
                 <th>Title</th>
                 <th>Create</th>
 
+
             </tr>
             </thead>
-            <tbody className="input-table-body">
+            <tbody className="employees-table-body">
 
             <tr style={{marginBottom: 20}}>
 
@@ -42,6 +43,7 @@ function CreateButton() {
                                onClick={create}
                                disabled={loading}
                                value="↳Create"/></td>
+
             </tr>
             </tbody>
         </table>
