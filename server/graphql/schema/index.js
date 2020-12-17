@@ -12,10 +12,12 @@ const typeDefs = gql`
         username: String
         email: String!
       }
+    
     type AuthPayload {
         token: String
         user: User
     }
+    
     type Content {
         _id: ID!
         title: String!

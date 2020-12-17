@@ -1,17 +1,29 @@
 import gql from 'graphql-tag';
 
-// export const FETCH_POSTS_QUERY = gql`
-//     {
-//         contents(search:"",category:0,index:1,hasNext:true){
-//             _id,
-//             content,
-//             createdAt,
-//             title
-//         }
-//     }
-// `;
-
 export const FETCH_POSTS_QUERY = gql`
+    {
+        contents(search:"",category:0,index:1,hasNext:true){
+            _id,
+            content,
+            createdAt,
+            title
+        }
+    }
+`;
+
+export const Pagination_Query = gql`
+    query contents($index:Int!){
+        contents(search:"",category:0,index:$index,hasNext:true){
+            _id,
+            content,
+            createdAt,
+            title
+        }
+    }
+    
+`;
+
+export const PaginationQuery = gql`
     query contents($index:Int!){
         contents(search:"",category:0,index:$index,hasNext:true){
             _id,

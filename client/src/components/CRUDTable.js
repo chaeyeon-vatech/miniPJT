@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useMutation, useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY, SearchQuery} from "../util/graphql"
+import {Pagination_Query} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
 import UpdateButton from "./UpdateButton";
@@ -9,23 +9,20 @@ function CrudTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
 
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
+    const {data, loading} = useQuery(Pagination_Query, {
         variables: {
             index: index
         }
     });
 
-    console.log(index);
-
-    // console.log("1",contents && contents.length);
-
     useEffect(() => {
         if (data) {
             setContents(data.contents);
+            setIndex(data.index);
         }
     }, [data]);
 
-    if (loading) return 'Loading...'
+    if (loading) return <div class="loader"></div>
     return (
 
         <table className="employees-table">
@@ -51,7 +48,7 @@ function CrudTable() {
             contents.map((content) => (
 
 
-                <tr key={content._id} style={{marginBottom: 20}}>
+                <tr key={content.index} style={{marginBottom: 20}}>
                     <td>{content._id}</td>
                     <td>{content.content}</td>
                     <td>{content.createdAt}</td>

@@ -14,7 +14,7 @@ function CreateButton() {
 
 
     const [create, {loading}] = useMutation(createmutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index: 1}}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY}],
             variables: {
                 title: title,
                 content: content
