@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY, PageQuery, Pagination_Query} from "../util/graphql"
+import {FETCH_POSTS_QUERY, PageQuery} from "../util/graphql"
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
@@ -32,7 +32,7 @@ function BoardTable() {
 
 
 
-    const {data, loading} = useQuery(Pagination_Query, {
+    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
         }
@@ -46,6 +46,7 @@ function BoardTable() {
     }, [data]);
 
     if (loading) return <div className="loader"></div>
+
 
     return (
 

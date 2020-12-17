@@ -26,6 +26,7 @@ function Main() {
 
     if (loading) return <div className="loader"></div>
 
+
     return (
         <div>
             <Header/>
