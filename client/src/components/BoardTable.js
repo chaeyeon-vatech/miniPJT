@@ -5,9 +5,18 @@ import {FETCH_POSTS_QUERY, PageQuery} from "../util/graphql"
 function BoardTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
-    // const paginate = pageNumber => setIndex(pageNumber);
-    // const pageNumbers = [];
+    const paginate = pageNumber => setIndex(pageNumber);
+    const pageNumbers = [];
 
+
+    // for (let i = 1; i <= Math.ceil(paginate.length/ 10); i++) {
+    //     pageNumbers.push(i);
+    // }
+    //
+    // console.log(pageNumbers)
+
+
+    //
     // function getValueByKey(object, value) {
     //     return Object.values(object).find(key => object[key] === value);
     // }
@@ -20,16 +29,6 @@ function BoardTable() {
     // console.log(Object.values(useQuery(PageQuery).data));
     //
     // const maxIndex = Object.values(useQuery(PageQuery).data);
-    //
-    //
-    //
-    // console.log(maxIndex)
-    // for (let i = 1; i <= Math.ceil(80/ 10); i++) {
-    //     pageNumbers.push(i);
-    // }
-    //
-
-
 
 
     const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
@@ -49,6 +48,7 @@ function BoardTable() {
 
 
     return (
+
 
         <table className="employees-table">
             <thead className="employees-table-head">
@@ -76,6 +76,7 @@ function BoardTable() {
 
             </tbody>
 
+
             <nav>
                 <ul className="pagination">
 
@@ -89,7 +90,9 @@ function BoardTable() {
                 </ul>
             </nav>
 
+
         </table>
+
 
     )
 }
