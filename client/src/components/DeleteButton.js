@@ -11,8 +11,8 @@ function DeleteButton(post_id) {
     const mutation = DELETE_MUTATION;
 
 
-    const [deletePostOrMutation, {error, loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY, variables:{index:1  }}],
+    const [deletePostOrMutation, {loading}] = useMutation(mutation, {
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index: 1}}],
             variables: {id: String(Object.values(post_id))}
         }
     )
@@ -27,12 +27,14 @@ function DeleteButton(post_id) {
                            disabled={loading}
                            value="↳Delete"/>
 
+                {/*<button onClick="window.location.reload();">Refresh Page</button>*/}
+
+
             </form>
 
         </>
     );
 }
-
 
 
 export default DeleteButton;

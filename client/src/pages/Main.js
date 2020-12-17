@@ -24,7 +24,8 @@ function Main() {
 
     console.log(contents._id);
 
-    if (loading) return 'Loading...'
+    if (loading) return <div className="loader"></div>
+
 
     return (
         <div>
