@@ -25,7 +25,8 @@ function CrudTable() {
         }
     }, [data]);
 
-    if (loading) return 'Loading...'
+    if (loading) return <div className="loader"></div>
+
     return (
 
         <table className="employees-table">
