@@ -9,7 +9,7 @@ function CrudTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
 
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
+    const {data, loading} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
         }
@@ -17,7 +17,7 @@ function CrudTable() {
 
     console.log(index);
 
-    // console.log("1",contents && contents.length);
+
 
     useEffect(() => {
         if (data) {

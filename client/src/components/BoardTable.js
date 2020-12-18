@@ -7,7 +7,6 @@ function BoardTable() {
     const [index, setIndex] = useState(1);
 
 
-
     const {data, loading} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
