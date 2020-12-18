@@ -1,24 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from '@material-ui/core/styles';
-import {useMutation, useQuery} from '@apollo/react-hooks';
+import {useQuery} from '@apollo/react-hooks';
 import {SearchQuery} from '../util/graphql';
-import CreateButton from "./CreateButton";
-import UpdateButton from "./UpdateButton";
-import DeleteButton from "./DeleteButton";
-import gql from "graphql-tag";
-import {render} from "@testing-library/react";
-import {getPageCount} from "@material-ui/data-grid";
-
-const WebFont = require('webfontloader');
-
-
-WebFont.load({
-    google: {
-        families: ['Do Hyeon', 'Sansita Swashed']
-    }
-});
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,8 +25,8 @@ function SearchBar() {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState(0);
     const [index, setIndex] = useState(1);
-    const [hasNext, setNext] = useState(true);
-    const {data, loading, error} = useQuery(SearchQuery, {
+    const [hasNext] = useState(true);
+    const {data,loading} = useQuery(SearchQuery, {
         variables: {
             search: search,
             category: category,
@@ -52,15 +36,6 @@ function SearchBar() {
 
     });
 
-    // const pageNumbers = [];
-    //
-
-
-    console.log(contents && contents.length);
-    console.log(data && data.length);
-
-    //
-    // console.log(pageNumbers);
 
     useEffect(() => {
         if (data) {
@@ -68,9 +43,7 @@ function SearchBar() {
         }
     }, [data]);
 
-    console.log(contents)
-    console.log(data)
-
+    if (loading) return <div className="loader"></div>
 
     return (
         <>

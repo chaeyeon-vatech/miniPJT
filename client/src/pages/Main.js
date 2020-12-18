@@ -9,20 +9,9 @@ import BoardTable from "../components/BoardTable";
 
 function Main() {
 
-    const [contents, setContents] = useState([]);
 
-    const {loading, data} = useQuery(FETCH_POSTS_QUERY);
+    const {loading} = useQuery(FETCH_POSTS_QUERY);
 
-
-    useEffect(() => {
-        if (data) {
-            setContents(data.contents);
-        }
-    }, [data]);
-
-    console.log(contents);
-
-    console.log(contents._id);
 
     if (loading) return <div className="loader"></div>
 
