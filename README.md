@@ -38,7 +38,7 @@
     ├── client                  # Client folder
             ├── components              # CRUD, Board의 button 및 Table, Search Bar
             ├── layout                  # Page 구성( Header, Menu, Footer)
-            ├── pages                   # CRUD, 검색목록, 검색 페이지 구성
+            ├── pages                   # Board, 검색, Crud 페이지 구성
             └── util                    # Graphql, hooks, mutation문 작성
     ├── server                  # Server folder
             ├── models                  # Model folder
