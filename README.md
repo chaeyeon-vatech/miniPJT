@@ -19,7 +19,7 @@
 
 ## 주요 기술스택
 
-![Generic badge](https://img.shields.io/badge/platform-Web-brightgreen.svg) ![Generic badge](https://img.shields.io/badge/library-React-blue.svg) ![Generic badge](https://img.shields.io/badge/library-apollo-green.svg)
+![Generic badge](https://img.shields.io/badge/platform-Web-brightgreen.svg) ![Generic badge](https://img.shields.io/badge/library-React-blue.svg) ![Generic badge](https://img.shields.io/badge/library-Apollo-green.svg)
 ![Generic badge](https://img.shields.io/badge/database-MongoDB-yellow.svg) ![Generic badge](https://img.shields.io/badge/language-JavaScript,GraphQL-important.svg)
 <br><br>
 
