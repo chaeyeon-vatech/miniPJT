@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import gql from 'graphql-tag';
+import React, {useState} from 'react';
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import {FETCH_POSTS_QUERY} from '../util/graphql';
 import TextField from "@material-ui/core/TextField";

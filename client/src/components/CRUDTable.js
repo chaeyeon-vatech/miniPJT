@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {useMutation, useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY, SearchQuery} from "../util/graphql"
+import {useQuery} from "@apollo/react-hooks";
+import {FETCH_POSTS_QUERY} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
 import UpdateButton from "./UpdateButton";
@@ -16,7 +16,6 @@ function CrudTable() {
     });
 
     console.log(index);
-
 
 
     useEffect(() => {
