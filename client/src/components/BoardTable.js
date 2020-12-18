@@ -5,33 +5,10 @@ import {FETCH_POSTS_QUERY, PageQuery} from "../util/graphql"
 function BoardTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
-    const paginate = pageNumber => setIndex(pageNumber);
-    const pageNumbers = [];
 
 
-    // for (let i = 1; i <= Math.ceil(paginate.length/ 10); i++) {
-    //     pageNumbers.push(i);
-    // }
-    //
-    // console.log(pageNumbers)
 
-
-    //
-    // function getValueByKey(object, value) {
-    //     return Object.values(object).find(key => object[key] === value);
-    // }
-    //
-    // console.log(getValueByKey(useQuery(PageQuery).data,"maxIndex"));
-    //
-    // const value = Object.keys(useQuery(PageQuery).data).find(key => useQuery(PageQuery).data[key] === key);
-
-    //
-    // console.log(Object.values(useQuery(PageQuery).data));
-    //
-    // const maxIndex = Object.values(useQuery(PageQuery).data);
-
-
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
+    const {data, loading} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
         }
