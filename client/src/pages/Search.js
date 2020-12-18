@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar";
 
 
 function Search() {
-    
+
 
     return (
         <div>

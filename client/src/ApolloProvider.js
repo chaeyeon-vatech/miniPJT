@@ -6,7 +6,6 @@ import {onError} from 'apollo-link-error'
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {createHttpLink} from 'apollo-link-http';
 import {ApolloProvider} from '@apollo/react-hooks';
-import {setContext} from 'apollo-link-context';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql'

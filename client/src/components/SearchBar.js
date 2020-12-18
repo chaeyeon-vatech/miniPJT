@@ -26,7 +26,7 @@ function SearchBar() {
     const [category, setCategory] = useState(0);
     const [index, setIndex] = useState(1);
     const [hasNext] = useState(true);
-    const {data,loading} = useQuery(SearchQuery, {
+    const {data, loading} = useQuery(SearchQuery, {
         variables: {
             search: search,
             category: category,
