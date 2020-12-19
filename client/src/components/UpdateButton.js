@@ -14,12 +14,12 @@ function UpdateButton(post_id) {
     const mutation = UPDATEMUTATION;
 
     const [update, {loading}] = useMutation(mutation, {
-            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index:1}}],
+            refetchQueries: [{query: FETCH_POSTS_QUERY, variables: {index: 1}}],
             variables: {
                 title: title,
                 content: content,
                 id: String(Object.values(post_id)),
-            },
+            }
         }
     )
 
@@ -43,7 +43,6 @@ function UpdateButton(post_id) {
     );
 
 }
-
 
 
 export default UpdateButton;

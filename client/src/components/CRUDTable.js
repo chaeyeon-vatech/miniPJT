@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {useMutation, useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY, SearchQuery} from "../util/graphql"
+import {useQuery} from "@apollo/react-hooks";
+import {FETCH_POSTS_QUERY} from "../util/graphql"
 import DeleteButton from "./DeleteButton";
 import CreateButton from "./CreateButton";
 import UpdateButton from "./UpdateButton";
 
-function BoardTable() {
+function CrudTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
 
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
+    const {data, loading} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
         }
     });
 
-    console.log("1",contents && contents.length);
+    console.log(index);
+
 
     useEffect(() => {
         if (data) {
@@ -23,7 +24,8 @@ function BoardTable() {
         }
     }, [data]);
 
-    if (loading) return 'Loading...'
+    if (loading) return <div className="loader"></div>
+
     return (
 
         <table className="employees-table">
@@ -82,4 +84,4 @@ function BoardTable() {
     )
 }
 
-export default BoardTable;
+export default CrudTable;

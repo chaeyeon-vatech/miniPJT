@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../layout/Header";
 import Menu from "../layout/Menu";
 import Footer from "../layout/Footer";
@@ -19,7 +19,8 @@ function Crud() {
     }, [data]);
 
 
-    if (loading) return 'Loading...'
+    if (loading) return <div className="loader"></div>
+
 
     return (
         <div>

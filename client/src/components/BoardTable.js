@@ -1,23 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery} from "@apollo/react-hooks";
-import {FETCH_POSTS_QUERY, PageQuery} from "../util/graphql"
+import {FETCH_POSTS_QUERY} from "../util/graphql"
 
 function BoardTable() {
     const [contents, setContents] = useState([]);
     const [index, setIndex] = useState(1);
 
-    console.log(index)
 
-    const {data, loading, error} = useQuery(FETCH_POSTS_QUERY, {
+    const {data, loading} = useQuery(FETCH_POSTS_QUERY, {
         variables: {
             index: index
         }
     });
 
-
-    const {length} = useQuery(PageQuery)
-
-    console.log({length})
 
     useEffect(() => {
         if (data) {
@@ -25,9 +20,11 @@ function BoardTable() {
         }
     }, [data]);
 
-    if (loading) return 'Loading...'
+    if (loading) return <div className="loader"></div>
+
 
     return (
+
 
         <table className="employees-table">
             <thead className="employees-table-head">
@@ -55,19 +52,23 @@ function BoardTable() {
 
             </tbody>
 
+
             <nav>
                 <ul className="pagination">
 
                     <li key={index}>
 
-                        <a onClick={(index) => setIndex(index - 1)} className='page-link'>🔙</a>
-                        <a onClick={(index) => setIndex(index + 1)} className='page-link'>🔜</a>
+                        <a onClick={() => setIndex(index - 1)} className='page-link'>🔙</a>
+                        <a onClick={() => setIndex(index + 1)} className='page-link'>🔜</a>
 
                     </li>
 
                 </ul>
             </nav>
+
+
         </table>
+
 
     )
 }
